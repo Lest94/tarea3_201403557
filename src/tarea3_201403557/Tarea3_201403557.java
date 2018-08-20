@@ -17,6 +17,7 @@ public class Tarea3_201403557 {
         Scanner read = new Scanner(System.in);
         Scanner orden = new Scanner(System.in);
         Scanner cifra = new Scanner(System.in);
+        Scanner name = new Scanner(System.in);
         int opcion = 0; //menu principal
         do {
             System.out.println("\n 1. usuarios");
@@ -41,9 +42,7 @@ public class Tarea3_201403557 {
                         switch (usuario) {
                             case 1:
                                 System.out.println("ingresar usuario");
-                               //scanner para leer nombre ingresado
-
-                                //comparar nombre con los que estan almacenados en el arreglo
+                                nombre = name.nextInt;//...comparar nombre con los que estan almacenados en el arreglo
                                 boolean bandera = false;
 
                                 for (int N = 0; N < 5; N++) {
@@ -84,7 +83,9 @@ public class Tarea3_201403557 {
                     break;
                 case 2:
                     int numero = 0;
-                    int n,digito,digito1, rep;
+                    int[] cont = new int[10]; // candidad de veces que aparece un digito
+                    int digito;
+                    int n;
                     System.out.println("Ingreso a contador de digitos repetidos");// menu contador de digitos
                     do {
                         System.out.println("\n 1. ingrese numero.");
@@ -99,29 +100,25 @@ public class Tarea3_201403557 {
                                 System.out.println("Selecciono ingresar numero.");
                                 System.out.println("ingrese numero---");
                                 n = cifra.nextInt();
-                                rep = 0;
-                                digito1 = 0;
-                                do{ digito = n%10;
-                                if(digito < digito1){
-                                    digito1 = digito;
-                                    rep = 1;
-                                } else{
-                                if (digito == digito1){
-                                rep++;}} n= n/10;
-                                    }while (n !=0);
-                                System.out.println("el numero"+ digito1 +"se repite"+rep+"veces" );
+                                while (n > 0) {
+                                    digito = (int) (n % 10);
+                                    cont[digito]++;//contador de digito
+                                    n /= 10;
+                                }
+                                for (digito = 0; digito < 10; digito++) {
+                                    if (cont[digito] > 1) {
+                                        System.out.println("el digito  " + digito + " se repite  " + cont[digito] + "");
+                                    }
+                                }
                                 break;
                             case 2:
-                                System.out.println("Selecciono ingrese numero a buscar.");
-                                break;
-                            case 3:
                                 System.out.println("Selecciono Mostrar numero de digitos.");
-                             
+
                                 break;
                             default:
                                 System.out.println("salir");
                         }
-                    } while (numero < 3);
+                    } while (numero < 2);
                     break;
 
                 case 3:
@@ -135,8 +132,7 @@ public class Tarea3_201403557 {
                     System.out.println("Ingreso a contador de digitos repetidos");// menu numeros ordenados
                     do {
                         System.out.println("\n 1. ingrese numeros.");
-                        System.out.println("\n 2.mostrar ordenados");
-                        System.out.println("\n 3. volver Atras.");
+                        System.out.println("\n 2. volver Atras.");
                         System.out.println("");
                         System.out.print("Ingrese Opción: ");
                         num = read.nextInt();
@@ -149,31 +145,27 @@ public class Tarea3_201403557 {
                                 b = orden.nextInt();
                                 System.out.println("ingrese tercer numero");
                                 c = orden.nextInt();
-                                if ((a > b) && (b > c)) {
+                                if ((a > b) && (b > c)) {// primera condicion 
                                     mayor = a;
                                     medio = b;
                                     menor = c;
                                     System.out.println("orden es " + mayor + " " + medio + " " + menor + "");
-                                } else if ((b > a) && (a > c)) {
+                                } else if ((b > a) && (a > c)) {//segunda condicion
                                     mayor = b;
                                     medio = a;
                                     menor = c;
                                     System.out.println("orden es " + mayor + " " + medio + " " + menor + "");
-                                } else if ((c > a) && (a > b)) {
+                                } else if ((c > a) && (a > b)) {// tercera condicion
                                     mayor = c;
                                     medio = a;
                                     menor = b;
                                     System.out.println("orden es " + mayor + " " + medio + " " + menor + "");
                                 }
-
-                                break;
-                            case 2:
-                                System.out.println("mostrar ordenados");
                                 break;
                             default:
                                 System.out.println("Saliendo...");
                         }
-                    } while (num < 3);
+                    } while (num < 2);
                     break;
 
                 case 4:
